@@ -13,7 +13,7 @@ class _AuthenticScreenState extends State<AuthenticScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return Scaffold(
     );
   }
 }

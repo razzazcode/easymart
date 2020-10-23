@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class EcommerceApp
 {
-   static const String appName = 'e-Shop';
+   static const String appName = 'easymart';
 
    static SharedPreferences sharedPreferences;
    static FirebaseUser user;
