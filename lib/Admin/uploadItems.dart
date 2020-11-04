@@ -268,7 +268,7 @@ return Container(
     icon: Icon(Icons.arrow_back , color: Colors.white,),
     onPressed: clearFormInfo),
 
-    title: Text ( " New Product " , style: TextStyle (color: Colors.green ,fontSize: 24.0 , fontWeight: FontWeight.bold),),
+    title: Text ( " News " , style: TextStyle (color: Colors.green ,fontSize: 24.0 , fontWeight: FontWeight.bold),),
 
     actions: [
 
@@ -276,7 +276,7 @@ FlatButton(
 
   onPressed: uploading ? null : ()=> uploadImageAndSaveItemInfo(),
 
-  child:Text ( " New Product " , style: TextStyle (color: Colors.pink ,fontSize: 16.0 , fontWeight: FontWeight.bold),),
+  child:Text ( " Add Product " , style: TextStyle (color: Colors.pink ,fontSize: 16.0 , fontWeight: FontWeight.bold),),
 
 ),
 
@@ -293,7 +293,7 @@ FlatButton(
 
           Container(
 
-            height: 230.0,
+            height: 200.0,
               width:  MediaQuery.of(context).size.width * 0.8,
             child: Center(
               child: AspectRatio(
@@ -301,7 +301,7 @@ FlatButton(
                 aspectRatio: 16/9,
 
                 child: Container (
-                  decoration: BoxDecoration ( image: DecorationImage (image: FileImage(file), fit: BoxFit.cover)),
+                  decoration: BoxDecoration (  image: DecorationImage (image: FileImage(file), fit: BoxFit.fill)),
                 ),
               ),
             ) ,
@@ -309,7 +309,7 @@ FlatButton(
           ),
 
 
-          Padding(padding: EdgeInsets.only(top: 12.0)),
+          Padding(padding: EdgeInsets.only(top: 50.0)),
 
 
 
@@ -346,6 +346,7 @@ FlatButton(
 
           Divider(color: Colors.pink,),
 
+          Padding(padding: EdgeInsets.only(top: 5.0)),
 
 
           ListTile(
