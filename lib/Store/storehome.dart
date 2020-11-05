@@ -185,9 +185,217 @@ Widget sourceInfo(ItemModel model, BuildContext context,
 
                 Container(
 
+                  child: Row (
+                    mainAxisSize: MainAxisSize.max,
 
-                  
-                )
+
+                    children: [
+
+                      Expanded(child: Text(model.title , style: TextStyle(color: Colors.black , fontSize: 14.0),),
+
+
+
+                      )
+                    ],
+                  ),
+
+
+
+                ),
+
+
+                SizedBox(height: 5.0,),
+
+
+                Container(
+
+                  child: Row (
+                    mainAxisSize: MainAxisSize.max,
+
+
+                    children: [
+
+                      Expanded(child: Text(model.shortInfo , style: TextStyle(color: Colors.black54 , fontSize: 12.0),),
+
+
+
+                      )
+                    ],
+                  ),
+
+
+
+                ),
+
+
+
+
+                SizedBox(height: 20.0,),
+
+
+
+
+                   Row (
+
+
+                    children: [
+
+Container(
+
+  decoration: BoxDecoration (
+
+    shape: BoxShape.rectangle,
+    color: Colors.pink
+
+  ),
+
+  alignment: Alignment.topLeft,
+
+  width: 40.0,
+
+  height: 43.0,
+  child: Center(
+
+    child: Column (
+
+
+      mainAxisAlignment: MainAxisAlignment.center,
+
+      children: [
+
+        Text("50%" , style: TextStyle (fontSize: 15.0, color: Colors.white , fontWeight: FontWeight.normal),
+
+        ),
+
+        Text("OFF" , style: TextStyle (fontSize: 12.0, color: Colors.white , fontWeight: FontWeight.normal),
+
+        ),
+
+
+
+
+
+      ],
+    ),
+  ),
+
+
+                      ),
+
+                      SizedBox(width: 10.0,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+
+                        children: [
+
+                          Padding(padding: EdgeInsets.only(top: 0.0),
+                          
+                          
+                          child: Row(
+                            
+                            children: [
+                              
+                              Text(
+
+                                r"Original Price : $",
+
+
+                                style: TextStyle(
+
+                                  fontSize: 14.0,
+                                  color: Colors.grey,
+                                  decoration: TextDecoration.lineThrough,
+
+                                ),
+                              ),
+
+
+                              Text(
+
+                                (  model.price+ model.price).toString(),
+                                style: TextStyle(
+
+                                    fontSize: 15.0,
+                                    color: Colors.grey,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                            ],
+                            
+                            
+                            
+                          ),
+                          
+                          
+                          ),
+
+
+
+                          Padding(padding: EdgeInsets.only(top: 5.0),
+
+
+                            child: Row(
+
+                              children: [
+
+                                Text(
+
+                                  r"New Price : $",
+                                  style: TextStyle(
+
+                                      fontSize: 14.0,
+                                      color: Colors.grey
+
+
+                                  ),
+                                ),
+
+                                Text(
+r"$" ,
+                                  style: TextStyle(color: Colors.red , fontSize: 16.0),
+
+                                ),
+
+                                Text(
+
+                                  (  model.price).toString(),
+                                  style: TextStyle(
+
+                                      fontSize: 15.0,
+                                      color: Colors.grey
+
+                                ),
+                                ),
+                              ],
+
+
+
+                            ),
+
+
+                          ),
+
+
+
+                        ],
+                      ),
+
+
+                    ],
+                  ),
+
+
+
+               
+
+Flexible(child: Container (),
+
+
+),
+
+
+
+
               ],
             ))
           ],

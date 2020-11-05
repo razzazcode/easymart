@@ -309,7 +309,7 @@ FlatButton(
           ),
 
 
-          Padding(padding: EdgeInsets.only(top: 50.0)),
+          Padding(padding: EdgeInsets.only(top: 5.0)),
 
 
 
@@ -513,7 +513,7 @@ saveItemInfo(imageDownloadUrl);
 
       "title" : _titleTextEditingController.text.trim(),
       "longDescription" : _descriptioTextEditingController.text.trim(),
-      "price" : _priceTextEditingController.text.trim(),
+      "price" : int.parse(_priceTextEditingController.text),
       "publishedDate" : DateTime.now(),
 
       "status" : "available",

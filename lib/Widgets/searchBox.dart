@@ -38,7 +38,7 @@ class SearchBoxDelegate extends SliverPersistentHeaderDelegate {
 alignment: Alignment.center,
 
           width: MediaQuery.of(context).size.width,
-          height: 50.0,
+          height: 80.0,
 
 
           child: InkWell(
@@ -79,7 +79,7 @@ child: Row(
             ),
 
 
-          )
+          ),
         ),
       );
 
