@@ -47,7 +47,7 @@ class _StoreHomeState extends State<StoreHome> {
 
               children: [IconButton(icon:
 
-              Icon(Icons.shopping_cart),
+              Icon(Icons.shopping_cart , color: Colors.pink,),
 
                   onPressed: ()
         {
@@ -74,7 +74,7 @@ class _StoreHomeState extends State<StoreHome> {
 
     top: 3.0,
     bottom: 4.0,
-
+left: 4.0 ,
     child: Consumer<CartItemCounter>(
 
     builder: (context , counter , _)
@@ -102,6 +102,50 @@ counter.count.toString(),
       ),
 
   drawer: MyDrawer(),
+
+        body: CustomScrollView (
+
+          slivers: [
+
+            SliverPersistentHeader(pinned: true, delegate: SearchBoxDelegate () ),
+
+            StreamBuilder<QuerySnapshot>(
+              
+              
+              stream: Firestore.instance.collection("items").limit(15).orderBy("publishedDate" , descending: true).snapshots(),
+
+              builder: (context , dataSnapshot){
+
+                return !dataSnapshot.hasData
+                    ? SliverToBoxAdapter(child: Center (child: circularProgress(),),)
+                    
+                    
+                    : SliverStaggeredGrid.countBuilder(
+
+                  crossAxisCount: 1 ,
+                
+                staggeredTileBuilder: (c) => StaggeredTile.fit(1),
+
+                  itemBuilder : ( context , index){
+                      
+                      ItemModel model = ItemModel.fromJson(dataSnapshot.data.documents[index].data);
+                      
+                      return sourceInfo(model, context);
+                      
+                  },
+
+itemCount: dataSnapshot.data.documents.length,
+                
+                );
+
+              },
+              
+            ),
+
+
+
+          ],
+        ),
       ),
     );
   }
@@ -111,7 +155,48 @@ counter.count.toString(),
 
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
-  return InkWell();
+  return InkWell(
+
+    splashColor: Colors.pink,
+
+    child: Padding (
+
+      padding: EdgeInsets.all(6.0),
+
+      child: Container (
+
+        height: 190.0,
+        width: width,
+
+        child: Row(
+
+          children: [
+
+            Image.network(model.thumbnailUrl , width: 140.0 , height: 140.0,),
+
+            SizedBox(width: 4.0,),
+
+            Expanded(child: Column(
+
+              crossAxisAlignment: CrossAxisAlignment.start,
+
+              children: [
+                SizedBox(height: 15.0,),
+
+                Container(
+
+
+                  
+                )
+              ],
+            ))
+          ],
+        ),
+      ),
+    ),
+
+
+  );
 }
 
 
