@@ -428,8 +428,8 @@ checkItemInCart ( model.shortInfo , context );
       removeCartFunction();
 
 
-      Route route = MaterialPageRoute(builder: (c) => StoreHome());
-      Navigator.pushReplacement(context, route);
+     // Route route = MaterialPageRoute(builder: (c) => StoreHome());
+    //  Navigator.pushReplacement(context, route);
 
 
     },
