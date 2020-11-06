@@ -6,6 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PaymentPage extends StatefulWidget {
+
+
+  final String adressId ;
+
+  final double totalAmount ;
+
+  PaymentPage({Key key , this.adressId , this.totalAmount, }) : super (key: key);
+
+
+
   @override
   _PaymentPageState createState() => _PaymentPageState();
 }
