@@ -37,7 +37,7 @@ class _StoreHomeState extends State<StoreHome> {
     ),
     ),
     title: Text(
-    "e-shop",
+    "EasyMart",
     style: TextStyle(fontSize: 55.0 , color: Colors.white, fontFamily: "Signatra") ,
     ),
     centerTitle: true,
@@ -156,6 +156,14 @@ itemCount: dataSnapshot.data.documents.length,
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
   return InkWell(
+
+    onTap: (){
+
+
+      Route route = MaterialPageRoute(builder: (c) => ProductPage(itemModel : model));
+      Navigator.pushReplacement(context, route);
+
+    },
 
     splashColor: Colors.pink,
 
@@ -297,7 +305,7 @@ Container(
                               
                               Text(
 
-                                r"Original Price : $",
+                                r"Original Price : $ ",
 
 
                                 style: TextStyle(
@@ -340,7 +348,7 @@ Container(
 
                                 Text(
 
-                                  r"New Price : $",
+                                  r"New Price : $ ",
                                   style: TextStyle(
 
                                       fontSize: 14.0,
@@ -351,7 +359,7 @@ Container(
                                 ),
 
                                 Text(
-r"$" ,
+r"$ " ,
                                   style: TextStyle(color: Colors.red , fontSize: 16.0),
 
                                 ),
@@ -393,11 +401,45 @@ Flexible(child: Container (),
 
 ),
 
+Align(
+  alignment: Alignment.centerRight,
+
+  child: removeCartFunction == null
+
+  ? IconButton (
+
+    icon :  Icon (Icons.add_shopping_cart , color: Colors.pink,),
 
 
+  onPressed : ()  {
+
+checkItemInCart ( model.shortInfo , context );
+},
+
+)
+                :IconButton(
+
+
+    icon : Icon (Icons.delete, color: Colors.pinkAccent,),
+
+  ) ,
+
+
+),
+
+
+                Divider(
+                  height: 5.0,
+
+                  color: Colors.pink,
+                )
 
               ],
-            ))
+            ) ,
+
+            ),
+
+
           ],
         ),
       ),
@@ -415,6 +457,41 @@ Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
 
 
 
-void checkItemInCart(String productID, BuildContext context)
+void checkItemInCart(String shortInfoAsID, BuildContext context)
 {
+
+  EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).contains(shortInfoAsID)
+
+      ? Fluttertoast.showToast(msg: " Item is Already in Cart .")
+
+: addItemToCart ( shortInfoAsID ,  context )  ;
 }
+
+addItemToCart( String shortInfoAsID , BuildContext context) {
+
+  List tempCartList =   EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+
+  tempCartList.add(shortInfoAsID);
+
+  EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
+      .document(EcommerceApp.sharedPreferences
+
+      .getString(EcommerceApp.userUID))
+
+      .updateData({
+    EcommerceApp.userCartList : tempCartList,
+    
+  }). then((v){
+    
+    Fluttertoast.showToast(msg: "Item Added Successfully ");
+    
+    EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempCartList);
+    
+    Provider.of<CartItemCounter>(context , listen: false).displayResult();
+    
+  } );
+
+
+
+      }
+

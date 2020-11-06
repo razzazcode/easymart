@@ -103,7 +103,7 @@ SizedBox(height: 10.0,),
 
                 ListTile(
 
-                  leading: Icon(Icons.home , color: Colors.white,),
+                  leading: Icon(Icons.reorder , color: Colors.white,),
                   title : Text( "My Orders" , style:  TextStyle(color : Colors.white),),
 
 
@@ -120,7 +120,7 @@ SizedBox(height: 10.0,),
                 Divider(height: 10.0, color: Colors.white, thickness: 6.0, ) ,
                 ListTile(
 
-                  leading: Icon(Icons.home , color: Colors.white,),
+                  leading: Icon(Icons.shopping_cart , color: Colors.white,),
                   title : Text( "My Cart" , style:  TextStyle(color : Colors.white),),
 
 
@@ -137,7 +137,7 @@ SizedBox(height: 10.0,),
                 Divider(height: 10.0, color: Colors.white, thickness: 6.0, ),
                 ListTile(
 
-                  leading: Icon(Icons.home , color: Colors.white,),
+                  leading: Icon(Icons.search , color: Colors.white,),
                   title : Text( "Search" , style:  TextStyle(color : Colors.white),),
 
 
@@ -154,7 +154,7 @@ SizedBox(height: 10.0,),
                 Divider(height: 10.0, color: Colors.white, thickness: 6.0, ) ,
                 ListTile(
 
-                  leading: Icon(Icons.home , color: Colors.white,),
+                  leading: Icon(Icons.add_location_alt , color: Colors.white,),
                   title : Text( "Add New Address" , style:  TextStyle(color : Colors.white),),
 
 
@@ -171,7 +171,7 @@ SizedBox(height: 10.0,),
                 Divider(height: 10.0, color: Colors.white, thickness: 6.0, ) ,
                 ListTile(
 
-                  leading: Icon(Icons.home , color: Colors.white,),
+                  leading: Icon(Icons.exit_to_app , color: Colors.white,),
                   title : Text( "LogOut" , style:  TextStyle(color : Colors.white),),
 
 
