@@ -7,6 +7,7 @@ import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Counters/totalMoney.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:e_shop/Store/storehome.dart';
@@ -182,7 +183,68 @@ return sourceInfo(model, context , removeCartFunction: ()=> removeItemFromUserCa
     );
   }
 
-  removeItemFromUserCart(String shortInfoAsId) {}
+  removeItemFromUserCart(String shortInfoAsID) {
 
-  beginBuildingCart() {}
+
+  List  tempCartList =   EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+
+  tempCartList.remove(shortInfoAsID);
+
+  EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
+      .document(EcommerceApp.sharedPreferences
+
+      .getString(EcommerceApp.userUID))
+
+      .updateData({
+    EcommerceApp.userCartList : tempCartList,
+
+  }). then((v){
+
+    Fluttertoast.showToast(msg: "Item Removed Successfully ");
+
+    EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempCartList);
+
+    Provider.of<CartItemCounter>(context , listen: false).displayResult();
+
+    totalAmount = 0 ;
+
+  } );
+
+
+  }
+
+  beginBuildingCart() {
+
+
+  return SliverToBoxAdapter(
+
+
+    child: Card (
+
+      color: Theme.of(context).primaryColor.withOpacity(0.5),
+
+      child: Container
+        (
+        height: 100,
+        child: Column (
+
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+
+            Icon(Icons.insert_emoticon , color: Colors .white,),
+
+            Text(" Cart is Empty"),
+
+            Text(" Start Adding Items To your Cart")
+          ],
+        ),
+
+
+      ),
+    )
+  );
+
+
+  }
 }

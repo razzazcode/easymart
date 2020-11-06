@@ -6,6 +6,7 @@ import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/Widgets/wideButton.dart';
 import 'package:e_shop/Models//address.dart';
 import 'package:e_shop/Counters/changeAddresss.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,25 @@ class _AddressState extends State<Address>
   Widget build(BuildContext context) {
     return SafeArea(
 
+
+
+      child: Scaffold(
+        appBar: MyAppBar(),
+
+        floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.pink,
+
+            label:Text ( " Add New Address"),
+        icon: Icon(Icons.add_location),
+
+        onPressed: () {
+
+          Route route =  MaterialPageRoute (builder: (c) => AddAddress());
+
+        },
+
+        ),
+      ),
     );
   }
 
