@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
+import 'package:e_shop/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
+//import '../main.dart';
 
 class PaymentPage extends StatefulWidget {
 
@@ -33,7 +34,57 @@ class _PaymentPageState extends State<PaymentPage> {
     return Material(
 
 
-      
+child: Container (
+
+  decoration: new BoxDecoration(
+    gradient: new LinearGradient(
+      colors: [ Colors.pink , Colors.lightGreenAccent ],
+      begin: const FractionalOffset(0.0, 0.0),
+      end: const FractionalOffset(1.0, 0.0),
+      stops: [0.0 , 1.0],
+      tileMode: TileMode.clamp,),
+  ),
+
+  child: Center(
+    child: Column(
+
+
+      mainAxisAlignment: MainAxisAlignment.center,
+
+      children: [
+
+        Padding(padding: EdgeInsets.all(8.0),
+
+        child: Image.asset("images/cash.png"),
+
+
+
+        ),
+
+        SizedBox(height: 10.0 ,),
+
+        FlatButton(
+
+
+          color: Colors.pink,
+          textColor: Colors.white,
+
+          padding: EdgeInsets.all(8.0),
+
+          splashColor: Colors.deepOrange,
+
+
+          onPressed: ()=> addOrderDetails(),
+
+          child: Text("Place Order Here " , style: TextStyle(fontSize: 30.0),),
+
+
+
+        )
+      ],
+    ),
+  ),
+),
 
 
 

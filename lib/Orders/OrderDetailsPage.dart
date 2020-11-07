@@ -11,6 +11,12 @@ import 'package:intl/intl.dart';
 String getOrderId="";
 class OrderDetails extends StatelessWidget {
 
+
+
+  final String orderID ;
+
+  OrderDetails({ Key key , this.orderID, }) : super( key: key) ;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
