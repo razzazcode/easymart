@@ -1,4 +1,5 @@
 import 'package:e_shop/Config/config.dart';
+import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Models/address.dart';
 import 'package:flutter/cupertino.dart';
@@ -83,6 +84,12 @@ final cName = TextEditingController();
         formKey.currentState.reset();
 
       });
+
+
+      Route route = MaterialPageRoute(builder: (c) => StoreHome());
+
+      Navigator.pushReplacement(context, route);
+
 
     }
 

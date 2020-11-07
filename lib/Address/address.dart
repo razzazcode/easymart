@@ -130,6 +130,9 @@ class _AddressState extends State<Address>
 
           Route route =  MaterialPageRoute (builder: (c) => AddAddress());
 
+          Navigator.pushReplacement(context, route);
+
+
         },
 
         ),
