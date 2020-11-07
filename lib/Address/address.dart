@@ -35,6 +35,90 @@ class _AddressState extends State<Address>
 
       child: Scaffold(
         appBar: MyAppBar(),
+        
+        body: Column (
+          
+          
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          
+          children: [
+            
+            
+            Align(
+              
+              alignment: Alignment.centerLeft,
+              child: Padding (
+                
+                
+                padding: EdgeInsets.all(8.0),
+                
+                child: Text (
+                  " Select Adress"
+                
+                , style: TextStyle (color: Colors.black , fontWeight: FontWeight.bold , fontSize: 20.0),
+                ),
+                
+              ),
+            ),
+            
+            Consumer<AddressChanger>(builder:  (context , address , c ) {
+              
+              return Flexible(child: StreamBuilder < QuerySnapshot>  (
+                
+                stream: EcommerceApp . firestore 
+                .collection(EcommerceApp.collectionUser)
+                .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+                .collection(EcommerceApp.subCollectionAddress).snapshots(),
+
+
+                builder: ( context , snapshot) {
+
+                  return !snapshot .hasData
+                      ? Center ( child: circularProgress(),)
+
+                      :snapshot.data.documents.length == 0
+
+                      ? noAddressCard()
+
+                      : ListView.builder(
+                  
+                  itemCount: snapshot.data.documents.length,
+                    
+                    shrinkWrap: true,
+
+                      itemBuilder: (context , index) {
+                    
+                    return AddressCard(
+                      
+                      currentIndex: address.count,
+                      
+                      value: index,
+                      
+                      addressId: snapshot.data.documents[index].documentID,
+                        
+                        
+                        totalAmount: widget.totalAmount,
+                        
+                        model: AddressModel.fromJson(snapshot.data.documents[index].data)
+                        ,
+                      
+                    );
+                    
+                      }
+
+
+
+                  );
+                },
+                
+              ),
+              );
+              
+              
+            })
+          ],
+        ),
 
         floatingActionButton: FloatingActionButton.extended(
         backgroundColor: Colors.pink,
@@ -55,6 +139,36 @@ class _AddressState extends State<Address>
 
   noAddressCard() {
     return Card(
+
+      color: Colors.pinkAccent.withOpacity(0.5),
+
+      child: Container (
+
+        height: 100.0,
+
+        alignment: Alignment.center,
+        child: Column (
+
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+
+            Icon(Icons.add_location_alt , color: Colors.white,),
+
+            Text(" No shipment Adress has been added"),
+
+            Text(" Please Add your shipment Adress"),
+
+
+
+
+          ],
+        ),
+      ),
+
+
+
+
 
     );
   }
@@ -84,6 +198,15 @@ class _AddressCardState extends State<AddressCard> {
 
     return InkWell(
 
+
+
+      onTap: ()
+
+      {
+
+
+        Provider.of<AddressChanger> (context , listen: false). displayResult(widget.value);
+      },
       child: Card(
         color: Colors.pinkAccent.withOpacity(0.4),
 
