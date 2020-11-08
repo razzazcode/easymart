@@ -254,7 +254,7 @@ Widget sourceOrderInfo(ItemModel model, BuildContext context,
 
                         children: [
 
-                     
+
 
                           Text(
                             r"$ " ,
