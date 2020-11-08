@@ -167,7 +167,7 @@ Widget sourceOrderInfo(ItemModel model, BuildContext context,
 
 
 
-            SizedBox(height: 20.0,),
+            SizedBox(height: 20.0, ),
 
 
 

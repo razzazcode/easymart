@@ -41,13 +41,13 @@ class _MyOrdersState extends State<MyOrders> {
 
           title: Text(
             "My Orders",
-            style: TextStyle(fontSize: 55.0 , color: Colors.white,) ,
+            style: TextStyle(fontSize: 15.0 , color: Colors.white,) ,
           ),
 
 
           actions: [
             
-            IconButton(icon: Icon ( Icons.arrow_drop_down, color : Colors.white),
+            IconButton(icon: Icon ( Icons.arrow_drop_down_circle, color : Colors.white),
 
 
                 onPressed: ()

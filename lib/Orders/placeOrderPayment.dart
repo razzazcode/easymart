@@ -80,7 +80,7 @@ child: Container (
 
 
 
-        )
+        ),
       ],
     ),
   ),
@@ -95,7 +95,7 @@ child: Container (
 
 
 
-  addOrderDetails() {
+  addOrderDetails()   {
 
 
 
@@ -106,9 +106,9 @@ child: Container (
       EcommerceApp.addressID: widget.adressId,
       EcommerceApp.totalAmount : widget.totalAmount,
 
-      " orderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) ,
+      "orderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) ,
 
-      EcommerceApp.productID : EcommerceApp.sharedPreferences.getString(EcommerceApp.userCartList) ,
+      EcommerceApp.productID : EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList) ,
 
       EcommerceApp.paymentDetails : " Cah on Delivery " ,
 
@@ -130,9 +130,9 @@ EcommerceApp.orderTime : DateTime.now().millisecondsSinceEpoch.toString(),
       EcommerceApp.addressID: widget.adressId,
       EcommerceApp.totalAmount : widget.totalAmount,
 
-      " orderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) ,
+      "orderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) ,
 
-      EcommerceApp.productID : EcommerceApp.sharedPreferences.getString(EcommerceApp.userCartList) ,
+      EcommerceApp.productID : EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList) ,
 
       EcommerceApp.paymentDetails : " Cah on Delivery " ,
 
