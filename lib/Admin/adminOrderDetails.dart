@@ -10,6 +10,25 @@ import 'package:intl/intl.dart';
 
 class AdminOrderDetails extends StatelessWidget {
 
+
+
+
+
+  final String orderID ;
+
+
+  final String adressID;
+  final String orderBy;
+
+
+
+  AdminOrderDetails({ Key key , this.orderID , this.orderBy , this.adressID }) : super(key: key);
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
 

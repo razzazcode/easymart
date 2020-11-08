@@ -167,6 +167,67 @@ Widget sourceOrderInfo(ItemModel model, BuildContext context,
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+            SizedBox(height: 5.0,),
+
+
+            Container(
+
+              child: Row (
+                mainAxisSize: MainAxisSize.max,
+
+
+                children: [
+
+                  Expanded(child: Text(r"Total Price : $ ", style: TextStyle(color: Colors.black54 , fontSize: 12.0),),
+
+
+
+                  )
+                ],
+              ),
+
+
+
+            ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             SizedBox(height: 20.0, ),
 
 
@@ -193,17 +254,7 @@ Widget sourceOrderInfo(ItemModel model, BuildContext context,
 
                         children: [
 
-                          Text(
-
-                            r"Total Price : $ ",
-                            style: TextStyle(
-
-                                fontSize: 14.0,
-                                color: Colors.grey
-
-
-                            ),
-                          ),
+                     
 
                           Text(
                             r"$ " ,
