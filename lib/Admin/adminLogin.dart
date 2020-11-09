@@ -211,7 +211,7 @@ Firestore.instance.collection("admins").getDocuments().then((snapshot){
 
   snapshot.documents.forEach((result) {
 
-if(result.data["id"]  != _admindIdTextEditingControler.text.trim()) {
+if(result.data["adminname"]  != _admindIdTextEditingControler.text.trim()) {
 
 Scaffold.of(context).showSnackBar(SnackBar(content : Text(" Youe Id Is Not Correct"),));
 

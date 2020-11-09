@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminLogin.dart';
+import 'package:e_shop/Admin/adminRegister.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
 import 'package:e_shop/DialogBox/loadingDialog.dart';
@@ -142,6 +143,42 @@ class _LoginState extends State<Login>
                   color: Colors.pink, fontWeight: FontWeight.bold),),
 
             ),
+
+
+
+
+
+            SizedBox(
+              height: 10.0,
+            ),
+
+            FlatButton.icon(
+
+              onPressed: () =>
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => adminRegister())),
+              icon: (Icon(Icons.nature_people, color: Colors.pink,)),
+              label: Text(" Register An Admin ", style: TextStyle(
+                  color: Colors.pink, fontWeight: FontWeight.bold),),
+
+            ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           ],

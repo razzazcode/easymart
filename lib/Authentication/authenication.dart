@@ -1,3 +1,4 @@
+import 'package:e_shop/Admin/adminRegister.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'register.dart';
@@ -14,7 +15,7 @@ class _AuthenticScreenState extends State<AuthenticScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
@@ -47,6 +48,11 @@ class _AuthenticScreenState extends State<AuthenticScreen> {
             ),
 
 
+            Tab (
+              icon: Icon(Icons.perm_contact_calendar, color: Colors.blue,),
+              text: " Register an Admin",
+
+            ),
 
 
           ],
@@ -68,6 +74,7 @@ child:  TabBarView (
   children : [
   Login(),
   Register(),
+    adminRegister(),
   ],
 ),
         ),
