@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Authentication/SplashScreenz.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';

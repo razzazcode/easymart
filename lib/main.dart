@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Authentication/SplashScreenz.dart';
 import 'package:e_shop/Counters/ItemQuantity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,7 +56,7 @@ ChangeNotifierProvider(create: (c)=> CartItemCounter()),
         theme: ThemeData(
           primaryColor: Colors.green,
         ),
-        home: SplashScreen()
+        home: SplashScreenz()
     ),
     
     
@@ -64,6 +65,12 @@ ChangeNotifierProvider(create: (c)=> CartItemCounter()),
     );
   }
 }
+
+
+
+
+
+
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -86,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   displaySplash(){
 
-    Timer(Duration(seconds: 5) , () async{
+    Timer(Duration(seconds: 60) , () async{
 
 
 if( await EcommerceApp.auth.currentUser() != null) {
@@ -116,7 +123,57 @@ else
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+
+
+
+
+  {
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('images/admin.png'), fit: BoxFit.cover)),
+      child: Container(
+        decoration: BoxDecoration(color: Colors.black),
+        child: SafeArea(
+          child: new Scaffold(
+            body: Column(
+              children: <Widget>[
+                Expanded(
+                  child: Opacity(
+                      opacity: .98,
+                      child:  Image.asset('images/gg.png')),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RichText(
+                    text: TextSpan(
+                        style: TextStyle(color: Colors.black),
+                        children: [
+                          TextSpan(text: 'POWERED FOR YOU by '),
+                          TextSpan(
+                              text: 'HosamCo',
+                              style: TextStyle(fontWeight: FontWeight.bold))
+                        ]),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+/*
+
+  {
     return Material(
       child: Container (
         decoration: new BoxDecoration(
@@ -135,12 +192,12 @@ else
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               
-              Image.asset("images/welcome.png"),
+              Image.asset("images/cash.png"),
 
               SizedBox(height: 20.0,),
               Text(
 
-                "A new way of shopping",
+                " HuSSaM way of shopping",
                     style: TextStyle(color: Colors.white),
               ),
 
@@ -151,3 +208,5 @@ else
     );
   }
 }
+
+*/

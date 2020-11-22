@@ -1,5 +1,5 @@
 name: e_shop
-description: Flutter eCommerce App using Firebase Firestore from Coding Cafe
+description: Flutter eCommerce App using Firebase Firestore from Razzaz Code
 
 version: 1.0.0+1
 
@@ -41,6 +41,7 @@ flutter:
     - images/login.png
     - images/admin.png
     - images/cash.png
+    - images/gg.png
 
 
 
