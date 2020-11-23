@@ -93,7 +93,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   displaySplash(){
 
-    Timer(Duration(seconds: 60) , () async{
+    Timer(Duration(seconds: 6) , () async{
 
 
 if( await EcommerceApp.auth.currentUser() != null) {
