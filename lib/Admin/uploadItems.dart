@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminShiftOrders.dart';
+import 'package:e_shop/Authentication/SplashScreenz.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/main.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -85,7 +86,7 @@ actions: [
 
 
 
-    Route route = MaterialPageRoute(builder: (c) => SplashScreen());
+    Route route = MaterialPageRoute(builder: (c) => SplashScreenz());
 
     Navigator.pushReplacement(context, route);
 

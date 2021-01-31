@@ -196,7 +196,7 @@ EcommerceApp.orderTime : DateTime.now().millisecondsSinceEpoch.toString(),
     
     Fluttertoast.showToast(msg: "Congratulations , your order has been added ");
 
-    Route route = MaterialPageRoute(builder: (c) => SplashScreen());
+    Route route = MaterialPageRoute(builder: (c) => SplashScreenz());
 
     Navigator.pushReplacement(context, route);
     

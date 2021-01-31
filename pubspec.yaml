@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.8.1
 
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.13.2+1
@@ -28,6 +29,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/easymarticon.png"
 
 flutter:
   uses-material-design: true

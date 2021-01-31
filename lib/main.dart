@@ -29,6 +29,7 @@ Future<void> main() async
 
   EcommerceApp.auth = FirebaseAuth.instance;
 
+
 EcommerceApp.sharedPreferences = await SharedPreferences.getInstance();
 
 EcommerceApp.firestore = Firestore.instance;
@@ -51,7 +52,7 @@ ChangeNotifierProvider(create: (c)=> CartItemCounter()),
     ],
     
     child:     MaterialApp(
-        title: 'easymart',
+        title: 'EastMart',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: Colors.green,
@@ -67,8 +68,7 @@ ChangeNotifierProvider(create: (c)=> CartItemCounter()),
 }
 
 
-
-
+/*
 
 
 
@@ -86,32 +86,32 @@ class _SplashScreenState extends State<SplashScreen>
     // TODO: implement initState
     super.initState();
 
-  displaySplash();
+    displaySplash();
 
 
   }
 
   displaySplash(){
 
-    Timer(Duration(seconds: 6) , () async{
+    Timer(Duration(seconds: 4) , () async{
 
 
-if( await EcommerceApp.auth.currentUser() != null) {
+      if( await EcommerceApp.auth.currentUser() != null) {
 
 
-  Route route = MaterialPageRoute(builder: (_)=> StoreHome());
-  Navigator.pushReplacement(context, route);
+        Route route = MaterialPageRoute(builder: (_)=> StoreHome());
+        Navigator.pushReplacement(context, route);
 
 
-}
+      }
 
-else
-  {
-    Route route = MaterialPageRoute(builder: (_)=> AuthenticScreen());
-    Navigator.pushReplacement(context, route);
+      else
+      {
+        Route route = MaterialPageRoute(builder: (_)=> AuthenticScreen());
+        Navigator.pushReplacement(context, route);
 
 
-  }
+      }
 
 
 
@@ -142,7 +142,7 @@ else
                 Expanded(
                   child: Opacity(
                       opacity: .98,
-                      child:  Image.asset('images/gg.png')),
+                      child:  Image.asset('images/logo.png')),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -150,9 +150,9 @@ else
                     text: TextSpan(
                         style: TextStyle(color: Colors.black),
                         children: [
-                          TextSpan(text: 'POWERED FOR YOU by '),
+                          TextSpan(text: 't main page splash '),
                           TextSpan(
-                              text: 'HosamCo',
+                              text: 'dart main page splash',
                               style: TextStyle(fontWeight: FontWeight.bold))
                         ]),
                   ),
@@ -171,7 +171,8 @@ else
 
 
 
-/*
+
+
 
   {
     return Material(

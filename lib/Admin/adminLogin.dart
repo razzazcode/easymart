@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Authentication/authenication.dart';
+import 'package:e_shop/Config/config.dart';
+import 'package:e_shop/DialogBox/loadingDialog.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -56,7 +59,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  final TextEditingController _admindIdTextEditingControler = TextEditingController();
+  final TextEditingController _admindEmailTextEditingControler = TextEditingController();
   final TextEditingController _passwordTextEditingControler = TextEditingController();
 
 
@@ -126,7 +129,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 
                   CustomTextField(
 
-                    controller: _admindIdTextEditingControler,
+                    controller: _admindEmailTextEditingControler,
                     data: Icons.person,
                     hintText: "id",
                     isObsecure: false,
@@ -152,7 +155,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 
             RaisedButton(
               onPressed: () {
-                _admindIdTextEditingControler.text.isNotEmpty &&
+                _admindEmailTextEditingControler.text.isNotEmpty &&
                     _passwordTextEditingControler.text.isNotEmpty
                     ?
                 loginAdmin()
@@ -205,7 +208,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
     );
   }
 
-  loginAdmin() {
+ /* loginAdmin() {
 
 Firestore.instance.collection("admins").getDocuments().then((snapshot){
 
@@ -258,7 +261,75 @@ else{
 
 
   }
+*/
 
+
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void loginAdmin()  async {
+    showDialog(context: context,
+
+        builder: (c) {
+          return LoadingAlertDialog(message: " Authinticatinc , Please wait",);
+        }
+    );
+
+    FirebaseUser firebaseUser;
+    await _auth.signInWithEmailAndPassword(
+      email: _admindEmailTextEditingControler.text.trim(),
+      password: _passwordTextEditingControler.text.trim(),
+    ).then((authUser) {
+      firebaseUser = authUser.user;
+    }).catchError((error) {
+      Navigator.pop(context);
+
+      showDialog(
+          context: context,
+
+          builder: (c) {
+            return ErrorAlertDialog(message: error.message.toString(),);
+          }
+      );
+    });
+
+    if (firebaseUser != null) {
+      readData(firebaseUser).then((s){
+
+        Navigator.pop(context);
+
+        Route route = MaterialPageRoute(builder: (c) => UploadPage());
+
+        Navigator.pushReplacement(context, route);
+
+
+      });
+    }
+  }
+
+  Future readData(FirebaseUser fadminUser) async {
+
+    Firestore.instance.collection("admins").document(fadminUser.uid).get().then((dataSnapshot ) async {
+
+      await EcommerceApp.sharedPreferences.setString("adminid", dataSnapshot.data[EcommerceApp.userUID]);
+
+      await EcommerceApp.sharedPreferences.setString( EcommerceApp.userEmail,  dataSnapshot.data[EcommerceApp.userEmail]);
+
+
+      await EcommerceApp.sharedPreferences.setString(EcommerceApp.userName,dataSnapshot.data[EcommerceApp.userName]);
+
+      await EcommerceApp.sharedPreferences.setString(EcommerceApp.userAvatarUrl, dataSnapshot.data[EcommerceApp.userAvatarUrl]);
+
+      await EcommerceApp.sharedPreferences.setString( EcommerceApp.passWord, _passwordTextEditingControler.text.trim());
+
+      List<String> cartList = dataSnapshot.data[EcommerceApp.userCartList].cast<String>();
+
+      await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, cartList);
+
+    }
+    );
+
+  }
 
 
 }

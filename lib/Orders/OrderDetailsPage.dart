@@ -548,7 +548,7 @@ children: [
 
     getOrderId= " " ;
 
-    Route route = MaterialPageRoute(builder: (c) => SplashScreen());
+    Route route = MaterialPageRoute(builder: (c) => SplashScreenz());
 
     Navigator.pushReplacement(context, route);
 

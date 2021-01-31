@@ -16,6 +16,9 @@ class _SplashScreenState extends State<SplashScreenz>
     with SingleTickerProviderStateMixin {
   Animation<double> opacity;
   AnimationController controller;
+  Animation<int> customTween;
+
+
 
   @override
   void initState() {
@@ -23,9 +26,15 @@ class _SplashScreenState extends State<SplashScreenz>
     controller = AnimationController(
         duration: Duration(milliseconds: 2500), vsync: this);
     opacity = Tween<double>(begin: 1.0, end: 0.0).animate(controller)
-      ..addListener(() {
-        setState(() {});
+     ..addListener(() {
+       setState(() {});
       });
+
+
+  //  customTween = IntTween(
+     //   begin: 0, end: 255).animate(controller)..addListener(() {setState(() {});});
+
+
     controller.forward().then((_) {
 
     //  displaySplash();
@@ -63,13 +72,29 @@ class _SplashScreenState extends State<SplashScreenz>
               image: AssetImage('images/gg.jpg'), fit: BoxFit.cover)),*/
       child: Container(
         decoration: BoxDecoration(color: Colors.lightGreenAccent),
+
+
+
+
         child: SafeArea(
           child: new Scaffold(
             body: Column(
+
+
+
+
+
+
+
+
+
               children: <Widget>[
                 Expanded(
                   child: Opacity(
-                      opacity: opacity.value,
+
+
+
+                      opacity: 1 , // opacity.value,
                       child:  Image.asset('images/gg.png')),
                 ),
                 Padding(
@@ -80,7 +105,7 @@ class _SplashScreenState extends State<SplashScreenz>
                         children: [
                           TextSpan(text: 'Powered by '),
                           TextSpan(
-                              text: 'Spalsh Screenz',
+                              text: 'H2Code ',
                               style: TextStyle(fontWeight: FontWeight.bold))
                         ]),
                   ),
@@ -97,7 +122,7 @@ class _SplashScreenState extends State<SplashScreenz>
 
   navigationPage(){
 
-    Timer(Duration(seconds: 6) , () async{
+    Timer(Duration(seconds: 2) , () async{
 
 
       if( await EcommerceApp.auth.currentUser() != null) {

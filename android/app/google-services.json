@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "810858879414",
-    "firebase_url": "https://easymart-1efbc.firebaseio.com",
-    "project_id": "easymart-1efbc",
-    "storage_bucket": "easymart-1efbc.appspot.com"
+    "project_number": "21814298111",
+    "project_id": "easymart-7b214",
+    "storage_bucket": "easymart-7b214.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:810858879414:android:7b4436876418a5239d4917",
+        "mobilesdk_app_id": "1:21814298111:android:81c48618fba37b85be93ca",
         "android_client_info": {
-          "package_name": "com.h2code.easymart"
+          "package_name": "com.razzazcode.easymart"
         }
       },
       "oauth_client": [
         {
-          "client_id": "810858879414-hpci092ip16lpthbdkfug0bgsv7is1im.apps.googleusercontent.com",
+          "client_id": "21814298111-jji30se78g4sh316g150rif89a2o74he.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBKED8EfnsTnMGcyUNef3c5PbblkEiCxn8"
+          "current_key": "AIzaSyANcyxOWQ847h7m3evt0uyugQgvLUNp3ww"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "810858879414-hpci092ip16lpthbdkfug0bgsv7is1im.apps.googleusercontent.com",
+              "client_id": "21814298111-jji30se78g4sh316g150rif89a2o74he.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
