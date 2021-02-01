@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:flutter/material.dart';
@@ -125,10 +126,21 @@ class _SplashScreenState extends State<SplashScreenz>
     Timer(Duration(seconds: 2) , () async{
 
 
-      if( await EcommerceApp.auth.currentUser() != null) {
+      if( await EcommerceApp.auth.currentUser() != null
+      && await EcommerceApp.userType != "admin") {
 
 
         Route route = MaterialPageRoute(builder: (_)=> StoreHome());
+        Navigator.pushReplacement(context, route);
+
+
+      }
+
+     else if( await EcommerceApp.auth.currentUser() != null
+          && await EcommerceApp.userType == "admin") {
+
+
+        Route route = MaterialPageRoute(builder: (_)=> UploadPage());
         Navigator.pushReplacement(context, route);
 
 

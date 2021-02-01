@@ -7,10 +7,12 @@ class CustomTextField extends StatelessWidget
   final String hintText;
   bool isObsecure = true;
 
-
+//final Color colorr ;
 
   CustomTextField(
-      {Key key, this.controller, this.data, this.hintText,this.isObsecure}
+      {Key key, this.controller, this.data, this.hintText,this.isObsecure
+    //  , this.colorr
+      }
       ) : super(key: key);
 
 

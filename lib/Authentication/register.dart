@@ -8,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import '../Store/storehome.dart';
 import 'package:e_shop/Config/config.dart';
 
@@ -33,6 +34,8 @@ class _RegisterState extends State<Register> {
 
   File _imageFile;
 
+  PickedFile image2;
+File image2camera;
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +67,10 @@ class _RegisterState extends State<Register> {
                 radius: _screenwidth * 0.15,
 
                 backgroundColor: Colors.white,
-                backgroundImage: _imageFile == null ? null : FileImage(
-                    _imageFile),
+                backgroundImage: image2camera == null ? null : FileImage(
+                    image2camera),
 
-                child: _imageFile == null
+                child: image2camera == null
                     ? Icon(Icons.add_photo_alternate, size: _screenwidth * 0.15,
                   color: Colors.grey,)
 
@@ -155,11 +158,20 @@ class _RegisterState extends State<Register> {
 
   Future<void> selectAndPickImage() async {
     _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    image2 =  await ImagePicker().getImage(
+      source: ImageSource.camera, maxHeight: 600.0 , maxWidth: 970.0
+    );
+    final appDir = await getApplicationDocumentsDirectory();
+
+
+    image2camera = File(image2.path);
+
   }
 
 
   Future<void> uploadAndSaveImage() async {
-    if (_imageFile == null) {
+    if (image2camera == null) {
       showDialog(
           context: context,
           builder: (c) {
@@ -216,7 +228,7 @@ displayDialog( String msg)
 
     StorageReference storageReference = FirebaseStorage.instance.ref().child(imageFileName);
 
-    StorageUploadTask storageUploadTask = storageReference.putFile(_imageFile);
+    StorageUploadTask storageUploadTask = storageReference.putFile(image2camera);
     
     
     StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;
@@ -290,7 +302,7 @@ Navigator.pushReplacement(context, route);
         "name" : _nameTextEditingControler.text.trim(),
         "url" : userImageUrl,
         "password" : _passwordTextEditingControler.text.trim(),
-
+        "userType": "client",
         EcommerceApp.userCartList: ["garbagrValue"]
 
       });
@@ -303,6 +315,8 @@ Navigator.pushReplacement(context, route);
       await EcommerceApp.sharedPreferences.setString(EcommerceApp.userAvatarUrl, userImageUrl);
       await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
       await EcommerceApp.sharedPreferences.setString( EcommerceApp.passWord, _passwordTextEditingControler.text.trim());
+      await EcommerceApp.sharedPreferences.setString( EcommerceApp.userType, "client");
+
 
     }
 }

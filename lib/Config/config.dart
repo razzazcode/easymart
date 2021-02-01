@@ -22,7 +22,7 @@ class EcommerceApp
    static final String userPhotoUrl = 'photoUrl';
    static final String userUID = 'uid';
    static final String userAvatarUrl = 'url';
-
+   static final String userType = 'userType';
 
    static final String passWord = 'password';
 

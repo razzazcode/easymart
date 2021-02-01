@@ -93,7 +93,7 @@ class _adminRegisterState extends State<adminRegister> {
 
 
                   CustomTextField(
-
+//colorr: null,
                     controller: _adminemailTextEditingControler,
                     data: Icons.email,
                     hintText: "Email",
@@ -286,12 +286,12 @@ class _adminRegisterState extends State<adminRegister> {
 
     Firestore.instance.collection("admins").document(fadminUser.uid).setData({
 
-      "adminid" : fadminUser.uid ,
+      "uid" : fadminUser.uid ,
       "email" : fadminUser.email,
-      "adminname" : _adminnameTextEditingControler.text.trim(),
+      "name" : _adminnameTextEditingControler.text.trim(),
       "url" : adminuserImageUrl,
       "password" : _adminpasswordTextEditingControler.text.trim(),
-
+"userType": "admin",
       EcommerceApp.userCartList: ["garbagrValue"]
 
     });
@@ -304,6 +304,7 @@ class _adminRegisterState extends State<adminRegister> {
     await EcommerceApp.sharedPreferences.setString(EcommerceApp.userAvatarUrl, adminuserImageUrl);
     await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
     await EcommerceApp.sharedPreferences.setString( EcommerceApp.passWord, _adminpasswordTextEditingControler.text.trim());
+    await EcommerceApp.sharedPreferences.setString( EcommerceApp.userType, "admin");
 
   }
 }
