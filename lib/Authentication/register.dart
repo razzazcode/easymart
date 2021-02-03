@@ -160,7 +160,7 @@ File image2camera;
     _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     image2 =  await ImagePicker().getImage(
-      source: ImageSource.camera, maxHeight: 600.0 , maxWidth: 970.0
+      source: ImageSource.camera
     );
     final appDir = await getApplicationDocumentsDirectory();
 
