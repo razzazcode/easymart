@@ -61,7 +61,7 @@ File image2camera;
 
 
             InkWell(
-              onTap: selectAndPickImage,
+              onTap: _showMyDialog,
               child: CircleAvatar(
 
                 radius: _screenwidth * 0.15,
@@ -156,18 +156,58 @@ File image2camera;
   }
 
 
-  Future<void> selectAndPickImage() async {
-    _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+  Future<void> captureAndPickImage() async {
+  //  _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     image2 =  await ImagePicker().getImage(
       source: ImageSource.camera
     );
-    final appDir = await getApplicationDocumentsDirectory();
 
 
     image2camera = File(image2.path);
 
   }
+
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Please select a profile picture.'),
+                Text('Would you like to select from gallery or to Capture a new photo ?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Gallery'),
+              onPressed: () {
+                captureAndPickImage();
+              //  Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Camera'),
+              onPressed: () {
+                _imageFile =  ImagePicker.pickImage(source: ImageSource.gallery) as File;              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
+
+
 
 
   Future<void> uploadAndSaveImage() async {
@@ -179,16 +219,21 @@ File image2camera;
           }
       );
     }
-      else { _passwordTextEditingControler.text == _cpasswordTextEditingControler.text
-        ? _emailTextEditingControler.text.isNotEmpty && _passwordTextEditingControler.text.isNotEmpty
-        && _cpasswordTextEditingControler.text.isNotEmpty && _nameTextEditingControler.text.isNotEmpty
+      else { _passwordTextEditingControler.text ==
+        _cpasswordTextEditingControler.text
+
+        ? _emailTextEditingControler.text.isNotEmpty &&
+        _passwordTextEditingControler.text.isNotEmpty
+
+        && _cpasswordTextEditingControler.text.isNotEmpty &&
+        _nameTextEditingControler.text.isNotEmpty
 
 
         ? uploadToStorage()
 
         :
 
-        displayDialog("pleasr write correct information")
+        displayDialog("please write correct information")
         : displayDialog("Passwords do not match");
 
   }
@@ -251,12 +296,20 @@ displayDialog( String msg)
   void _registerUser() async {
     FirebaseUser firebaseUser;
     
-    await _auth.createUserWithEmailAndPassword(email: _emailTextEditingControler.text.trim(),
+    await _auth.createUserWithEmailAndPassword
+      (
+
+      email: _emailTextEditingControler.text.trim(),
 
         password: _passwordTextEditingControler.text.trim(),
-    ).then((auth) {
+
+    )
+
+        .then((auth) {
       firebaseUser = auth.user;
-    }).catchError((error){
+    })
+
+        .catchError((error){
 
       Navigator.pop(context);
 

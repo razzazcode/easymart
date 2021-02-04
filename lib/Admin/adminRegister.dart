@@ -155,7 +155,7 @@ class _adminRegisterState extends State<adminRegister> {
 
 
   Future<void> selectAndPickImage() async {
-    _adminimageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+    _adminimageFile = await ImagePicker.pickImage(source: ImageSource.gallery, maxHeight: 600.0 , maxWidth: 970.0);
   }
 
 
@@ -238,14 +238,21 @@ class _adminRegisterState extends State<adminRegister> {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _registeradminUser() async {
+
     FirebaseUser firebaseadminUser;
 
-    await _auth.createUserWithEmailAndPassword(email: _adminemailTextEditingControler.text.trim(),
+    await _auth.createUserWithEmailAndPassword
+      (
+      email: _adminemailTextEditingControler.text.trim(),
 
       password: _adminpasswordTextEditingControler.text.trim(),
-    ).then((auth) {
+    )
+
+        .then((auth) {
       firebaseadminUser = auth.user;
-    }).catchError((error){
+    })
+
+        .catchError((error){
 
       Navigator.pop(context);
 
@@ -292,7 +299,7 @@ class _adminRegisterState extends State<adminRegister> {
       "url" : adminuserImageUrl,
       "password" : _adminpasswordTextEditingControler.text.trim(),
 "userType": "admin",
-      EcommerceApp.userCartList: ["garbagrValue"]
+      EcommerceApp.userCartoonList: ["garbagrValue"]
 
     });
 
@@ -302,7 +309,7 @@ class _adminRegisterState extends State<adminRegister> {
     await EcommerceApp.sharedPreferences.setString("email", fadminUser.email);
     await EcommerceApp.sharedPreferences.setString( EcommerceApp.userName, _adminnameTextEditingControler.text.trim());
     await EcommerceApp.sharedPreferences.setString(EcommerceApp.userAvatarUrl, adminuserImageUrl);
-    await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
+    await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartoonList, ["garbageValue"]);
     await EcommerceApp.sharedPreferences.setString( EcommerceApp.passWord, _adminpasswordTextEditingControler.text.trim());
     await EcommerceApp.sharedPreferences.setString( EcommerceApp.userType, "admin");
 
