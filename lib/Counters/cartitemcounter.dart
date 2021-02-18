@@ -5,7 +5,8 @@ class CartItemCounter extends ChangeNotifier{
 
 
 
-  int _counter = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).length-1;
+  int _counter = EcommerceApp.sharedPreferences
+      .getStringList(EcommerceApp.userCartList).length-1;
 
 
   int get count => _counter;

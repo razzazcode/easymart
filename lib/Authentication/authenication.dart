@@ -1,4 +1,5 @@
 import 'package:e_shop/Admin/adminRegister.dart';
+import 'package:e_shop/Admin/register_page.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'register.dart';
@@ -73,7 +74,7 @@ indicatorColor: Colors.white38,
 child:  TabBarView (
   children : [
   Login(),
-  Register(),
+    RegisterPage(),
     adminRegister(),
   ],
 ),

@@ -344,11 +344,21 @@ Navigator.pushReplacement(context, route);
     Future saveUserInfoToFireStore(FirebaseUser fUser) async
     {
 
-
-
-
-
       Firestore.instance.collection("users").document(fUser.uid).setData({
+
+        "uid" : fUser.uid ,
+        "email" : fUser.email,
+        "name" : _nameTextEditingControler.text.trim(),
+        "url" : userImageUrl,
+        "password" : _passwordTextEditingControler.text.trim(),
+        "userType": "client",
+        EcommerceApp.userCartList: ["garbagrValue"]
+
+      });
+
+
+
+      Firestore.instance.collection("clients").document(fUser.uid).setData({
 
         "uid" : fUser.uid ,
         "email" : fUser.email,

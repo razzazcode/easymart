@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 
 
-class AdminSignInPage extends StatelessWidget {
+class adminLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +34,6 @@ class AdminSignInPage extends StatelessWidget {
     centerTitle: true,
 
 
-
-
-
-
-
-
-
     ),
 body: AdminSignInScreen(),
     );
@@ -57,7 +50,8 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 {
 
 
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState>
+  _formkey = GlobalKey<FormState>();
 
   final TextEditingController _admindEmailTextEditingControler = TextEditingController();
   final TextEditingController _passwordTextEditingControler = TextEditingController();
@@ -131,7 +125,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 
                     controller: _admindEmailTextEditingControler,
                     data: Icons.person,
-                    hintText: "id",
+                    hintText: "Email",
                     isObsecure: false,
                   ),
 
@@ -158,7 +152,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
                 _admindEmailTextEditingControler.text.isNotEmpty &&
                     _passwordTextEditingControler.text.isNotEmpty
                     ?
-                loginAdmin()
+                loginAdmin2()
                     : showDialog(context: context,
 
                     builder: (c) {
@@ -191,8 +185,12 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
             FlatButton.icon(
 
               onPressed: () =>
+
                   Navigator.push(context, MaterialPageRoute(
+
                       builder: (context) => AuthenticScreen())),
+
+
               icon: (Icon(Icons.nature_people, color: Colors.pink,)),
               label: Text(" I am not Admin ", style: TextStyle(
                   color: Colors.pink, fontWeight: FontWeight.bold),),
@@ -208,13 +206,13 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
     );
   }
 
- /* loginAdmin() {
+  loginAdmin2() {
 
 Firestore.instance.collection("admins").getDocuments().then((snapshot){
 
   snapshot.documents.forEach((result) {
 
-if(result.data["adminname"]  != _admindIdTextEditingControler.text.trim()) {
+if(result.data["email"]  != _admindEmailTextEditingControler.text.trim()) {
 
 Scaffold.of(context).showSnackBar(SnackBar(content : Text(" Youe Id Is Not Correct"),));
 
@@ -229,14 +227,30 @@ if(result.data["password"]  != _passwordTextEditingControler.text.trim()) {
 }
 
 
+
+else
+
+if(result.data["userType"] != "admin") {
+
+  Scaffold.of(context).showSnackBar(SnackBar(content : Text(" Youe are not admin"),));
+
+}
+
+
+
+
+
+
+
 else{
 
 
-  Scaffold.of(context).showSnackBar(SnackBar(content : Text(" Welcome Dear Admin " + result.data["name"]),));
+  Scaffold.of(context).showSnackBar(SnackBar(content :
+   Text(" Welcome Dear Admin " + result.data["name"]),));
 
 
   setState(() {
-    _admindIdTextEditingControler.text = " ";
+    _admindEmailTextEditingControler.text = " ";
 
     _passwordTextEditingControler.text= " ";
 
@@ -261,7 +275,7 @@ else{
 
 
   }
-*/
+
 
 
 
@@ -271,7 +285,7 @@ else{
     showDialog(context: context,
 
         builder: (c) {
-          return LoadingAlertDialog(message: " Authinticatinc , Please wait",);
+          return LoadingAlertDialog(message: " Authinticating , Please wait",);
         }
     );
 
@@ -311,7 +325,7 @@ else{
 
     Firestore.instance.collection("admins").document(fadminUser.uid).get().then((dataSnapshot ) async {
 
-      await EcommerceApp.sharedPreferences.setString("adminid", dataSnapshot.data[EcommerceApp.userUID]);
+      await EcommerceApp.sharedPreferences.setString("uid", dataSnapshot.data[EcommerceApp.userUID]);
 
       await EcommerceApp.sharedPreferences.setString( EcommerceApp.userEmail,  dataSnapshot.data[EcommerceApp.userEmail]);
 
@@ -322,9 +336,9 @@ else{
 
       await EcommerceApp.sharedPreferences.setString( EcommerceApp.passWord, _passwordTextEditingControler.text.trim());
 
-      List<String> cartList = dataSnapshot.data[EcommerceApp.userCartList].cast<String>();
+      List<String> cartList = dataSnapshot.data[EcommerceApp.userCartoonList].cast<String>();
 
-      await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, cartList);
+      await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartoonList, cartList);
 
     }
     );

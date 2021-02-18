@@ -1,6 +1,9 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminLogin.dart';
 import 'package:e_shop/Admin/adminRegister.dart';
+import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
 import 'package:e_shop/DialogBox/loadingDialog.dart';
@@ -137,7 +140,7 @@ class _LoginState extends State<Login>
 
               onPressed: () =>
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => AdminSignInPage())),
+                      builder: (context) => adminLogin())),
               icon: (Icon(Icons.nature_people, color: Colors.pink,)),
               label: Text(" I am An Admin ", style: TextStyle(
                   color: Colors.pink, fontWeight: FontWeight.bold),),
@@ -201,9 +204,11 @@ class _LoginState extends State<Login>
     await _auth.signInWithEmailAndPassword(
       email: _emailTextEditingControler.text.trim(),
       password: _passwordTextEditingControler.text.trim(),
-    ).then((authUser) {
+    )
+        .then((authUser) {
       firebaseUser = authUser.user;
-    }).catchError((error) {
+    })
+        .catchError((error) {
       Navigator.pop(context);
 
       showDialog(
@@ -218,11 +223,22 @@ class _LoginState extends State<Login>
     if (firebaseUser != null) {
       readData(firebaseUser).then((s){
 
+   /*
+
+
         Navigator.pop(context);
 
-        Route route = MaterialPageRoute(builder: (c) => StoreHome());
+        Route route = MaterialPageRoute(builder: (c) => UploadPage());
 
         Navigator.pushReplacement(context, route);
+
+
+  */
+
+
+        loginAdmin();
+
+        print(" lamaaaaaaaaa lil elmoshtaaq333333333333");
 
 
       });
@@ -230,6 +246,11 @@ class _LoginState extends State<Login>
   }
 
   Future readData(FirebaseUser fUser) async {
+
+
+
+    print(" lamaaaaaaaaa lil elmoshtaaq");
+
 
     Firestore.instance.collection("users").document(fUser.uid).get().then((dataSnapshot ) async {
 
@@ -248,10 +269,106 @@ class _LoginState extends State<Login>
 
       await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, cartList);
 
+
+
+
+
+
+/*
+ String specie;
+
+      DocumentReference documentReference =
+
+      Firestore.instance.collection("users").document(fUser.uid);
+
+      await documentReference.get().then((snapshot) {
+        specie = snapshot.data['email'].toString();
+
+        print (specie);
+      });
+
+
+ */
+
+
     }
     );
 
     }
+
+
+
+
+
+  //   start new login
+
+
+
+  void loginAdmin() async {
+    print(" lamaaaaaaaaa lil elmoshtaaq22222222222");
+
+    FirebaseUser firebaseUser;
+    firebaseUser = FirebaseAuth.instance.currentUser as FirebaseUser;
+
+
+    Firestore.instance.collection("users")
+        .document(firebaseUser.uid).get().then((snapshot){
+
+      // snapshot.document(firebaseUser.uid).forEach((result) {
+
+        if(snapshot.data["userType"]  != "admin") {
+
+          Navigator.pop(context);
+
+          Route route = MaterialPageRoute(builder: (c) => StoreHome());
+
+          Navigator.pushReplacement(context, route);
+        }
+
+
+
+
+        else{
+
+
+          Scaffold.of(context).showSnackBar(SnackBar
+            (content : Text(" Welcome Dear Admin " + snapshot.data["name"]),));
+
+
+          Navigator.pop(context);
+
+          Route route = MaterialPageRoute(builder: (c) => UploadPage());
+
+          Navigator.pushReplacement(context, route);
+
+        }
+
+      });
+
+   // });
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+// end of new login
+
+
+
+
+
+
+
+
+
 
 
   }

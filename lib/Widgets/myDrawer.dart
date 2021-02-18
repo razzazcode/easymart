@@ -55,8 +55,8 @@ class MyDrawer extends StatelessWidget {
 SizedBox(height: 10.0,),
                 Text(
 
-                  EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
-                  style: TextStyle( color : Colors.white , fontSize: 35.0 , fontFamily: "Signatra"),
+     EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
+   style: TextStyle( color : Colors.white , fontSize: 35.0 , fontFamily: "Signatra"),
                 ),
 
 

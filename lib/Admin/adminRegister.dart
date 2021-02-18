@@ -287,7 +287,17 @@ class _adminRegisterState extends State<adminRegister> {
   Future saveadminUserInfoToFireStore(FirebaseUser fadminUser) async
   {
 
+    Firestore.instance.collection("users").document(fadminUser.uid).setData({
 
+      "uid" : fadminUser.uid ,
+      "email" : fadminUser.email,
+      "name" : _adminnameTextEditingControler.text.trim(),
+      "url" : adminuserImageUrl,
+      "password" : _adminpasswordTextEditingControler.text.trim(),
+      "userType": "admin",
+      EcommerceApp.userCartoonList: ["garbagrValue"]
+
+    });
 
 
 

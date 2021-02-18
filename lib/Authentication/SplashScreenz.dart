@@ -21,6 +21,33 @@ class _SplashScreenState extends State<SplashScreenz>
 
 
 
+/*
+  cupertino_icons: ^0.1.2
+  cloud_firestore: ^0.13.2+1
+  firebase_auth: ^0.15.4
+  shared_preferences: ^0.5.6+1
+  fluttertoast: ^3.1.3
+  image_picker: ^0.6.3+1
+  firebase_storage: ^3.1.1
+  flutter_staggered_grid_view: ^0.3.0
+  provider: ^4.0.4
+  path_provider: ^0.5.0+1
+  image: ^2.0.7
+  intl:
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
   @override
   void initState() {
     super.initState();
@@ -123,24 +150,13 @@ class _SplashScreenState extends State<SplashScreenz>
 
   navigationPage(){
 
-    Timer(Duration(seconds: 2) , () async{
+    Timer(Duration(seconds: 1) , () async{
 
 
-      if( await EcommerceApp.auth.currentUser() != null
-      && await EcommerceApp.userType != "admin") {
+      if( await EcommerceApp.auth.currentUser != null) {
 
 
         Route route = MaterialPageRoute(builder: (_)=> StoreHome());
-        Navigator.pushReplacement(context, route);
-
-
-      }
-
-     else if( await EcommerceApp.auth.currentUser() != null
-          && await EcommerceApp.userType == "admin") {
-
-
-        Route route = MaterialPageRoute(builder: (_)=> UploadPage());
         Navigator.pushReplacement(context, route);
 
 
