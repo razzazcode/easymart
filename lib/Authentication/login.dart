@@ -169,28 +169,13 @@ class _LoginState extends State<Login>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           ],
         ),
       ),
     );
   }
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
+ final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void loginUser()  async {
     showDialog(context: context,
@@ -304,25 +289,28 @@ class _LoginState extends State<Login>
 
 
 
-  void loginAdmin() async {
-    print(" lamaaaaaaaaa lil elmoshtaaq22222222222");
+   loginAdmin()  async {
 
-    FirebaseUser firebaseUser;
-    firebaseUser = FirebaseAuth.instance.currentUser as FirebaseUser;
 
+     final FirebaseUser user = await _auth.currentUser();
+     final uid = user.uid;
 
     Firestore.instance.collection("users")
-        .document(firebaseUser.uid).get().then((snapshot){
+        .document(uid).get().then((snapshot){
 
-      // snapshot.document(firebaseUser.uid).forEach((result) {
+   //   snapshot.documents.forEach((result) {
 
         if(snapshot.data["userType"]  != "admin") {
 
-          Navigator.pop(context);
+        //  Navigator.pop(context);
 
           Route route = MaterialPageRoute(builder: (c) => StoreHome());
 
           Navigator.pushReplacement(context, route);
+
+
+          print(" lamaaaaaaaaa lil elmoshtaaq22222222222");
+
         }
 
 
@@ -335,11 +323,15 @@ class _LoginState extends State<Login>
             (content : Text(" Welcome Dear Admin " + snapshot.data["name"]),));
 
 
-          Navigator.pop(context);
+       //   Navigator.pop(context);
 
           Route route = MaterialPageRoute(builder: (c) => UploadPage());
 
           Navigator.pushReplacement(context, route);
+
+
+          print(" lamaaaaaaaaa lil 33333333333");
+
 
         }
 
@@ -348,7 +340,7 @@ class _LoginState extends State<Login>
    // });
 
 
-  }
+  ;
 
 
 
@@ -361,15 +353,6 @@ class _LoginState extends State<Login>
 
 // end of new login
 
-
-
-
-
-
-
-
-
-
-
   }
 
+}
