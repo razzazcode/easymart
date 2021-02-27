@@ -512,11 +512,14 @@ saveItemInfo(imageDownloadUrl);
 
    saveItemInfo(String downloadUrl) {
 
-    final itemRef = Firestore.instance.collection("items");
+    final CollectionReference itemRef = Firestore.instance.collection("items");
 
     itemRef.document(productId).setData({
 
-"shortInfo" : _shortInfoTextEditingController.text.trim(),
+      "Seller" :      EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
+
+
+      "shortInfo" : _shortInfoTextEditingController.text.trim(),
 
       "title" : _titleTextEditingController.text.trim(),
       "longDescription" : _descriptioTextEditingController.text.trim(),
@@ -527,10 +530,28 @@ saveItemInfo(imageDownloadUrl);
 
       "thumbnailUrl" : downloadUrl,
 
-
-
-
     });
+
+    final CollectionReference adminproducts = Firestore.instance.collection("admins");
+
+adminproducts.document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+    .collection("myItems").document(productId).setData({
+
+  "Seller" :      EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
+
+
+  "shortInfo" : _shortInfoTextEditingController.text.trim(),
+
+  "title" : _titleTextEditingController.text.trim(),
+  "longDescription" : _descriptioTextEditingController.text.trim(),
+  "price" : int.parse(_priceTextEditingController.text),
+  "publishedDate" : DateTime.now(),
+
+  "status" : "available",
+
+  "thumbnailUrl" : downloadUrl,
+
+});
 
     setState(() {
 

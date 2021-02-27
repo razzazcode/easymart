@@ -1,12 +1,15 @@
 
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Store/storehome.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'authenication.dart';
+import 'login.dart';
 
 class SplashScreenz extends StatefulWidget {
   @override
@@ -147,6 +150,7 @@ class _SplashScreenState extends State<SplashScreenz>
 
     ;
   }
+ // final FirebaseAuth _auth = FirebaseAuth.instance;
 
   navigationPage(){
 
@@ -154,16 +158,20 @@ class _SplashScreenState extends State<SplashScreenz>
 
 
       if( await EcommerceApp.auth.currentUser != null) {
+        print(" lamaaaaaaaaa lil elmoshtaaq");
 
-
-        Route route = MaterialPageRoute(builder: (_)=> StoreHome());
-        Navigator.pushReplacement(context, route);
+       loginAdmin();
+     //   Route route = MaterialPageRoute(builder: (_)=> StoreHome());
+    //    Navigator.pushReplacement(context, route);
 
 
       }
 
       else
       {
+
+        print(" lamaaaaaaaaa lil elmoshtaaqghfdtdyjdyj");
+
         Route route = MaterialPageRoute(builder: (_)=> AuthenticScreen());
         Navigator.pushReplacement(context, route);
 
@@ -178,5 +186,61 @@ class _SplashScreenState extends State<SplashScreenz>
 
   }
 
+  loginAdmin()  async {
 
-}
+/*
+    final FirebaseUser user = await _auth.currentUser();
+    final uid = user.uid;
+
+    Firestore.instance.collection("users")
+        .document(uid).get().then((snapshot){
+
+      //   snapshot.documents.forEach((result) {
+
+      if(snapshot.data["userType"]  != "admin") {
+
+        //  Navigator.pop(context);
+*/
+    if( await EcommerceApp.sharedPreferences.getString(EcommerceApp.userType)
+    != "client") {
+        Route route = MaterialPageRoute(builder: (c) => StoreHome());
+
+        Navigator.pushReplacement(context, route);
+
+
+        print(" lamaaaaaaaaa lil elmoshtaaq22222222222");
+
+      }
+
+
+
+
+      else{
+
+
+
+
+
+        //   Navigator.pop(context);
+
+        Route route = MaterialPageRoute(builder: (c) => UploadPage());
+
+        Navigator.pushReplacement(context, route);
+
+
+        print(" lamaaaaaaaaa lil 33333333333");
+
+
+      }
+
+    }
+
+    // });
+
+
+// end of new login
+
+  }
+
+
+

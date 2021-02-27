@@ -234,7 +234,6 @@ class _LoginState extends State<Login>
 
 
 
-    print(" lamaaaaaaaaa lil elmoshtaaq");
 
 
     Firestore.instance.collection("users").document(fUser.uid).get().then((dataSnapshot ) async {
