@@ -45,7 +45,7 @@ class MyDrawer extends StatelessWidget {
 
                       backgroundImage: NetworkImage(
 
-                        EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl),
+             EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl),
 
                       ),
 

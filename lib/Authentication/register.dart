@@ -34,8 +34,8 @@ class _RegisterState extends State<Register> {
 
   File _imageFile;
 
-  PickedFile image2;
-File image2camera;
+  PickedFile image2 , pickedimage;
+File pickedimagewithpath ,  image2gallery;
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +67,10 @@ File image2camera;
                 radius: _screenwidth * 0.15,
 
                 backgroundColor: Colors.white,
-                backgroundImage: image2camera == null ? null : FileImage(
-                    image2camera),
+                backgroundImage: pickedimagewithpath == null ? null : FileImage(
+                    pickedimagewithpath),
 
-                child: image2camera == null
+                child: pickedimagewithpath == null
                     ? Icon(Icons.add_photo_alternate, size: _screenwidth * 0.15,
                   color: Colors.grey,)
 
@@ -164,7 +164,20 @@ File image2camera;
     );
 
 
-    image2camera = File(image2.path);
+    pickedimagewithpath = File(image2.path);
+
+  }
+
+
+  Future<void> galleryPickImage() async {
+    //  _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    pickedimage =  await ImagePicker().getImage(
+        source: ImageSource.gallery
+    );
+
+
+    pickedimagewithpath = File( pickedimage.path);
 
   }
 
@@ -172,7 +185,7 @@ File image2camera;
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('AlertDialog Title'),
@@ -186,16 +199,25 @@ File image2camera;
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Gallery'),
+              child: Text('Camera'),
               onPressed: () {
                 captureAndPickImage();
-              //  Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Camera'),
+              child: Text('Gallery'),
               onPressed: () {
-                _imageFile =  ImagePicker.pickImage(source: ImageSource.gallery) as File;              },
+
+                Navigator.of(context).pop();
+
+              //  _imageFile =  ImagePicker.pickImage(source: ImageSource.gallery) as File;
+galleryPickImage();
+                Navigator.of(context).pop();
+
+              },
+
+
             ),
           ],
         );
@@ -204,14 +226,8 @@ File image2camera;
   }
 
 
-
-
-
-
-
-
   Future<void> uploadAndSaveImage() async {
-    if (image2camera == null) {
+    if (pickedimagewithpath == null) {
       showDialog(
           context: context,
           builder: (c) {
@@ -273,7 +289,7 @@ displayDialog( String msg)
 
     StorageReference storageReference = FirebaseStorage.instance.ref().child(imageFileName);
 
-    StorageUploadTask storageUploadTask = storageReference.putFile(image2camera);
+    StorageUploadTask storageUploadTask = storageReference.putFile(pickedimagewithpath);
     
     
     StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;

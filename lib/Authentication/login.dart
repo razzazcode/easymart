@@ -208,18 +208,6 @@ class _LoginState extends State<Login>
     if (firebaseUser != null) {
       readData(firebaseUser).then((s){
 
-   /*
-
-
-        Navigator.pop(context);
-
-        Route route = MaterialPageRoute(builder: (c) => UploadPage());
-
-        Navigator.pushReplacement(context, route);
-
-
-  */
-
 
         loginAdmin();
 
@@ -254,25 +242,8 @@ class _LoginState extends State<Login>
       await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, cartList);
 
 
+      await EcommerceApp.sharedPreferences.setString(EcommerceApp.userType,dataSnapshot.data[EcommerceApp.userType]);
 
-
-
-
-/*
- String specie;
-
-      DocumentReference documentReference =
-
-      Firestore.instance.collection("users").document(fUser.uid);
-
-      await documentReference.get().then((snapshot) {
-        specie = snapshot.data['email'].toString();
-
-        print (specie);
-      });
-
-
- */
 
 
     }

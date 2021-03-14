@@ -19,8 +19,11 @@ class UploadPage extends StatefulWidget
   _UploadPageState createState() => _UploadPageState();
 }
 
-class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMixin<UploadPage>
+class _UploadPageState extends State<UploadPage> with
+    AutomaticKeepAliveClientMixin<UploadPage>
 {
+
+
   bool get wantKeepAlive => true;
 
   File file;

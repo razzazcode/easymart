@@ -202,7 +202,7 @@ class _SplashScreenState extends State<SplashScreenz>
         //  Navigator.pop(context);
 */
     if( await EcommerceApp.sharedPreferences.getString(EcommerceApp.userType)
-    != "client") {
+    != "admin") {
         Route route = MaterialPageRoute(builder: (c) => StoreHome());
 
         Navigator.pushReplacement(context, route);

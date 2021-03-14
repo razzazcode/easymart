@@ -13,6 +13,8 @@ import '../Widgets/myDrawer.dart';
 import '../Widgets/searchBox.dart';
 import '../Models/item.dart';
 
+
+
 double width;
 
 
@@ -30,12 +32,12 @@ double width;
 
 
 
-class StoreHome extends StatefulWidget {
+class AdminStoreHome extends StatefulWidget {
   @override
-  _StoreHomeState createState() => _StoreHomeState();
+  _AdminStoreHomeState createState() => _AdminStoreHomeState();
 }
 
-class _StoreHomeState extends State<StoreHome> {
+class _AdminStoreHomeState extends State<AdminStoreHome> {
 
 
 
@@ -93,10 +95,10 @@ class _StoreHomeState extends State<StoreHome> {
                         child: Consumer<CartItemCounter>(
                           builder: (context, counter, _) {
                             return Text(
-                          (EcommerceApp.sharedPreferences
-                          .getStringList(
-                              EcommerceApp.userCartList)
-                          .length - 1)
+                              (EcommerceApp.sharedPreferences
+                                  .getStringList(
+                                  EcommerceApp.userCartList)
+                                  .length - 1)
                                   .toString(),
                               style: TextStyle(
                                   color: Colors.white,
@@ -126,21 +128,21 @@ class _StoreHomeState extends State<StoreHome> {
               builder: (context, dataSnapshot) {
                 return !dataSnapshot.hasData
                     ? SliverToBoxAdapter(
-                        child: Center(
-                          child: circularProgress(),
-                        ),
-                      )
+                  child: Center(
+                    child: circularProgress(),
+                  ),
+                )
                     : SliverStaggeredGrid.countBuilder(
-                        crossAxisCount: 1,
-                        staggeredTileBuilder: (c) => StaggeredTile.fit(1),
-                        itemBuilder: (context, index) {
-                          ItemModel model = ItemModel.fromJson(
-                              dataSnapshot.data.documents[index].data);
+                  crossAxisCount: 1,
+                  staggeredTileBuilder: (c) => StaggeredTile.fit(1),
+                  itemBuilder: (context, index) {
+                    ItemModel model = ItemModel.fromJson(
+                        dataSnapshot.data.documents[index].data);
 
-                          return sourceInfo(model, context);
-                        },
-                        itemCount: dataSnapshot.data.documents.length,
-                      );
+                    return sourceInfo(model, context);
+                  },
+                  itemCount: dataSnapshot.data.documents.length,
+                );
               },
             ),
           ],
@@ -155,7 +157,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
   return InkWell(
     onTap: () {
       Route route =
-          MaterialPageRoute(builder: (c) => ProductPage(itemModel: model));
+      MaterialPageRoute(builder: (c) => ProductPage(itemModel: model));
       Navigator.pushReplacement(context, route);
     },
     splashColor: Colors.pink,
@@ -189,7 +191,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                           child: Text(
                             model.title,
                             style:
-                                TextStyle(color: Colors.black, fontSize: 14.0),
+                            TextStyle(color: Colors.black, fontSize: 14.0),
                           ),
                         )
                       ],
@@ -307,45 +309,45 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                     alignment: Alignment.centerRight,
                     child: removeCartFunction == null
                         ? IconButton(
-                            icon: Icon(
-                              Icons.add_shopping_cart,
-                              color: Colors.pink,
-                            ),
-                            onPressed: () {
-                              checkItemInCart(model.shortInfo, context);
+                      icon: Icon(
+                        Icons.add_shopping_cart,
+                        color: Colors.pink,
+                      ),
+                      onPressed: () {
+                        checkItemInCart(model.shortInfo, context);
 
 
 
-                              String specie;
-                              FirebaseUser fUser;
-                              DocumentReference documentReference =
+                        String specie;
+                        FirebaseUser fUser;
+                        DocumentReference documentReference =
 
-                              Firestore.instance.collection("users")
-                                  .document(EcommerceApp.userUID);
+                        Firestore.instance.collection("users")
+                            .document(EcommerceApp.userUID);
 
-                               documentReference.get().then((snapshot) {
-                                specie = snapshot.data["email"].toString();
+                        documentReference.get().then((snapshot) {
+                          specie = snapshot.data["email"].toString();
 
-                                print (specie);
-                              });
-
-
+                          print (specie);
+                        });
 
 
-                            },
-                          )
+
+
+                      },
+                    )
                         : IconButton(
-                            icon: Icon(
-                              Icons.delete,
-                              color: Colors.pinkAccent,
-                            ),
-                            onPressed: () {
-                              removeCartFunction();
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.pinkAccent,
+                      ),
+                      onPressed: () {
+                        removeCartFunction();
 
-                              // Route route = MaterialPageRoute(builder: (c) => StoreHome());
-                              //  Navigator.pushReplacement(context, route);
-                            },
-                          ),
+                        // Route route = MaterialPageRoute(builder: (c) => StoreHome());
+                        //  Navigator.pushReplacement(context, route);
+                      },
+                    ),
                   ),
                   Divider(
                     height: 5.0,
@@ -387,15 +389,15 @@ Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
 
 void checkItemInCart(String shortInfoAsID, BuildContext context) {
   EcommerceApp.sharedPreferences
-          .getStringList(EcommerceApp.userCartList)
-          .contains(shortInfoAsID)
+      .getStringList(EcommerceApp.userCartList)
+      .contains(shortInfoAsID)
       ? Fluttertoast.showToast(msg: " Item is Already in Cart .")
       : addItemToCart(shortInfoAsID, context);
 }
 
 addItemToCart(String shortInfoAsID, BuildContext context) {
   List tempCartList =
-      EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+  EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
 
   tempCartList.add(shortInfoAsID);
 

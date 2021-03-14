@@ -74,7 +74,7 @@ indicatorColor: Colors.white38,
 child:  TabBarView (
   children : [
   Login(),
-    RegisterPage(),
+    Register(),
     adminRegister(),
   ],
 ),
