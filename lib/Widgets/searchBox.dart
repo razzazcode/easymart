@@ -71,7 +71,7 @@ child: Row(
     ),
     
     Padding(padding: EdgeInsets.only(left: 8.0),
-      child: Text("Search Here ..."),
+      child: Text("Search Items ..."),
     ),
   ],
 ),

@@ -12,6 +12,7 @@ import '../Widgets/loadingWidget.dart';
 import '../Widgets/myDrawer.dart';
 import '../Widgets/searchBox.dart';
 import '../Models/item.dart';
+import 'package:e_shop/Admin/uploadItems.dart';
 
 
 
@@ -62,7 +63,7 @@ class _AdminStoreHomeState extends State<AdminStoreHome> {
             ),
           ),
           title: Text(
-            "EasyMart",
+            "AdminStoreHome",
             style: TextStyle(
                 fontSize: 55.0, color: Colors.white, fontFamily: "Signatra"),
           ),
@@ -76,7 +77,7 @@ class _AdminStoreHomeState extends State<AdminStoreHome> {
                     color: Colors.pink,
                   ),
                   onPressed: () {
-                    Route route = MaterialPageRoute(builder: (c) => CartPage());
+                    Route route = MaterialPageRoute(builder: (c) => UploadPage());
                     Navigator.pushReplacement(context, route);
                   },
                 ),

@@ -1,6 +1,7 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Admin/AdminStoreHome.dart';
 import 'package:e_shop/Admin/adminLogin.dart';
 import 'package:e_shop/Admin/adminRegister.dart';
 import 'package:e_shop/Admin/uploadItems.dart';
@@ -295,7 +296,7 @@ class _LoginState extends State<Login>
 
        //   Navigator.pop(context);
 
-          Route route = MaterialPageRoute(builder: (c) => UploadPage());
+          Route route = MaterialPageRoute(builder: (c) => AdminStoreHome());
 
           Navigator.pushReplacement(context, route);
 
