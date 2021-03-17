@@ -125,21 +125,21 @@ class _StoreHomeState extends State<StoreHome> {
                   .snapshots(),
               builder: (context, dataSnapshot) {
                 return !dataSnapshot.hasData
-                    ? SliverToBoxAdapter(
-                        child: Center(
-                          child: circularProgress(),
-                        ),
-                      )
-                    : SliverStaggeredGrid.countBuilder(
-                        crossAxisCount: 1,
-                        staggeredTileBuilder: (c) => StaggeredTile.fit(1),
-                        itemBuilder: (context, index) {
-                          ItemModel model = ItemModel.fromJson(
-                              dataSnapshot.data.documents[index].data);
+     ? SliverToBoxAdapter(
+         child: Center(
+           child: circularProgress(),
+         ),
+       )
+     : SliverStaggeredGrid.countBuilder(
+         crossAxisCount: 1,
+         staggeredTileBuilder: (c) => StaggeredTile.fit(1),
+         itemBuilder: (context, index) {
+           ItemModel model = ItemModel.fromJson(
+               dataSnapshot.data.documents[index].data);
 
-                          return sourceInfo(model, context);
-                        },
-                        itemCount: dataSnapshot.data.documents.length,
+           return sourceInfo(model, context);
+         },
+         itemCount: dataSnapshot.data.documents.length,
                       );
               },
             ),
@@ -178,21 +178,21 @@ Widget sourceInfo(ItemModel model, BuildContext context,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            model.title,
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 14.0),
-                          ),
-                        )
-                      ],
+SizedBox(
+  height: 15.0,
+),
+Container(
+  child: Row(
+    mainAxisSize: MainAxisSize.max,
+    children: [
+      Expanded(
+        child: Text(
+          model.title,
+          style:
+              TextStyle(color: Colors.black, fontSize: 14.0),
+        ),
+      )
+    ],
                     ),
                   ),
                   SizedBox(
@@ -201,142 +201,142 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                   Container(
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            model.shortInfo,
-                            style: TextStyle(
-                                color: Colors.black54, fontSize: 12.0),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle, color: Colors.pink),
-                        alignment: Alignment.topLeft,
+          children: [
+            Expanded(
+              child: Text(
+                model.shortInfo,
+                style: TextStyle(
+                    color: Colors.black54, fontSize: 12.0),
+              ),
+            )
+          ],
+        ),
+      ),
+      SizedBox(
+        height: 20.0,
+      ),
+      Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle, color: Colors.pink),
+            alignment: Alignment.topLeft,
                         width: 40.0,
                         height: 43.0,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "50%",
-                                style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                              Text(
-                                "OFF",
-                                style: TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ],
-                          ),
-                        ),
+  child: Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "50%",
+          style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.white,
+              fontWeight: FontWeight.normal),
+        ),
+        Text(
+          "OFF",
+          style: TextStyle(
+              fontSize: 12.0,
+              color: Colors.white,
+              fontWeight: FontWeight.normal),
+        ),
+      ],
+    ),
+  ),
                       ),
                       SizedBox(
                         width: 10.0,
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 0.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  r"Original Price : $ ",
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                                Text(
-                                  (model.price + model.price).toString(),
-                                  style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Padding(
+      padding: EdgeInsets.only(top: 0.0),
+      child: Row(
+        children: [
+          Text(
+            r"Original Price : $ ",
+            style: TextStyle(
+              fontSize: 14.0,
+              color: Colors.grey,
+              decoration: TextDecoration.lineThrough,
+            ),
+          ),
+          Text(
+            (model.price + model.price).toString(),
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Colors.grey,
+              decoration: TextDecoration.lineThrough,
+            ),
+          ),
+        ],
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 5.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  r"New Price : $ ",
-                                  style: TextStyle(
-                                      fontSize: 14.0, color: Colors.grey),
-                                ),
-                                Text(
-                                  r"$ ",
-                                  style: TextStyle(
-                                      color: Colors.red, fontSize: 16.0),
-                                ),
-                                Text(
-                                  (model.price).toString(),
-                                  style: TextStyle(
-                                      fontSize: 15.0, color: Colors.grey),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Flexible(
-                    child: Container(),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: removeCartFunction == null
-                        ? IconButton(
-                            icon: Icon(
-                              Icons.add_shopping_cart,
-                              color: Colors.pink,
-                            ),
-                            onPressed: () {
-                              checkItemInCart(model.shortInfo, context);
+   ),
+   Padding(
+     padding: EdgeInsets.only(top: 5.0),
+     child: Row(
+       children: [
+         Text(
+           r"New Price : $ ",
+           style: TextStyle(
+               fontSize: 14.0, color: Colors.grey),
+         ),
+         Text(
+           r"$ ",
+           style: TextStyle(
+               color: Colors.red, fontSize: 16.0),
+         ),
+         Text(
+           (model.price).toString(),
+           style: TextStyle(
+               fontSize: 15.0, color: Colors.grey),
+                 ),
+               ],
+             ),
+           ),
+         ],
+       ),
+     ],
+   ),
+   Flexible(
+     child: Container(),
+   ),
+   Align(
+     alignment: Alignment.centerRight,
+     child: removeCartFunction == null
+         ? IconButton(
+             icon: Icon(
+               Icons.add_shopping_cart,
+               color: Colors.pink,
+             ),
+             onPressed: () {
+         checkItemInCart(model.shortInfo, context);
 
 
 
-                              String specie;
-                              FirebaseUser fUser;
-                              DocumentReference documentReference =
+         String specie;
+         FirebaseUser fUser;
+         DocumentReference documentReference =
 
-                              Firestore.instance.collection("users")
-                                  .document(EcommerceApp.userUID);
+         Firestore.instance.collection("users")
+             .document(EcommerceApp.userUID);
 
-                               documentReference.get().then((snapshot) {
-                                specie = snapshot.data["email"].toString();
+          documentReference.get().then((snapshot) {
+           specie = snapshot.data["email"].toString();
 
-                                print (specie);
-                              });
-
-
+           print (specie);
+         });
 
 
-                            },
-                          )
-                        : IconButton(
-                            icon: Icon(
-                              Icons.delete,
+
+
+       },
+     )
+   : IconButton(
+       icon: Icon(
+         Icons.delete,
                               color: Colors.pinkAccent,
                             ),
                             onPressed: () {

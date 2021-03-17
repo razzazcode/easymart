@@ -122,7 +122,10 @@ class _AdminStoreHomeState extends State<AdminStoreHome> {
             SliverPersistentHeader(pinned: true, delegate: SearchBoxDelegate()),
             StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
-                  .collection("items")
+                  .collection("admins")
+   .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+
+                  .collection("myItems")
                   .limit(15)
                   .orderBy("publishedDate", descending: true)
                   .snapshots(),
