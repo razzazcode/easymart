@@ -2,13 +2,13 @@ import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Address/addAddress.dart';
 import 'package:e_shop/Store/Search.dart';
-import 'package:e_shop/Store/cart.dart';
+import 'package:e_shop/Admin/uploaditems.dart';
 import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class MyDrawer extends StatelessWidget {
+class AdminDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -24,39 +24,39 @@ class MyDrawer extends StatelessWidget {
               gradient: new LinearGradient(
                 colors: [ Colors.pink , Colors.lightGreenAccent ],
                 begin: const FractionalOffset(0.0, 0.0),
-    end: const FractionalOffset(1.0, 0.0),
-    stops: [0.0 , 1.0],
-    tileMode: TileMode.clamp,),
-),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: [0.0 , 1.0],
+                tileMode: TileMode.clamp,),
+            ),
 
-child: Column (
+            child: Column (
 
-  children: [
-    Material(
+              children: [
+                Material(
 
-      borderRadius: BorderRadius.all(Radius.circular(80.0)),
-      elevation: 8.0,
+                  borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                  elevation: 8.0,
 
-      child: Container(
+                  child: Container(
 
-        height: 160.0,
-        width: 160.0,
-        child: CircleAvatar (
+                    height: 160.0,
+                    width: 160.0,
+                    child: CircleAvatar (
 
-          backgroundImage: NetworkImage(
+                      backgroundImage: NetworkImage(
 
- EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl),
+                        EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl),
 
-          ),
+                      ),
 
-        ),
-      ),
-    ),
-SizedBox(height: 10.0,),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.0,),
                 Text(
 
-     EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
-   style: TextStyle( color : Colors.white , fontSize: 35.0 , fontFamily: "Signatra"),
+                  EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
+                  style: TextStyle( color : Colors.white , fontSize: 35.0 , fontFamily: "Signatra"),
                 ),
 
 
@@ -68,23 +68,23 @@ SizedBox(height: 10.0,),
 
           SizedBox(height: 12.0,),
           Container(
-    padding: EdgeInsets.only(top: 25.0 , bottom: 10.0),
+            padding: EdgeInsets.only(top: 25.0 , bottom: 10.0),
 
-    decoration: new BoxDecoration(
-    gradient: new LinearGradient(
-    colors: [ Colors.pink , Colors.lightGreenAccent ],
-    begin: const FractionalOffset(0.0, 0.0),
-    end: const FractionalOffset(1.0, 0.0),
-    stops: [0.0 , 1.0],
-    tileMode: TileMode.clamp,),
-    ),
+            decoration: new BoxDecoration(
+              gradient: new LinearGradient(
+                colors: [ Colors.pink , Colors.lightGreenAccent ],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: [0.0 , 1.0],
+                tileMode: TileMode.clamp,),
+            ),
 
             child: Column(
               children: [
                 ListTile(
 
                   leading: Icon(Icons.home , color: Colors.white,),
-    title : Text( "Home" , style:  TextStyle(color : Colors.white),),
+                  title : Text( "Home" , style:  TextStyle(color : Colors.white),),
 
 
 
@@ -120,14 +120,14 @@ SizedBox(height: 10.0,),
                 Divider(height: 10.0, color: Colors.white, thickness: 6.0, ) ,
                 ListTile(
 
-                  leading: Icon(Icons.shopping_cart , color: Colors.white,),
-                  title : Text( "My Cart" , style:  TextStyle(color : Colors.white),),
+                  leading: Icon(Icons.border_color , color: Colors.white,),
+                  title : Text( " Add Items " , style:  TextStyle(color : Colors.white),),
 
 
 
                   onTap: () {
 
-                    Route route = MaterialPageRoute(builder: (c) => CartPage());
+                    Route route = MaterialPageRoute(builder: (c) => UploadPage());
 
                     Navigator.pushReplacement(context, route);
                   },
@@ -178,13 +178,13 @@ SizedBox(height: 10.0,),
 
                   onTap: () {
 
-                  EcommerceApp.auth.signOut().then((c){
+                    EcommerceApp.auth.signOut().then((c){
 
-                    Route route = MaterialPageRoute(builder: (c) => AuthenticScreen());
+                      Route route = MaterialPageRoute(builder: (c) => AuthenticScreen());
 
-                    Navigator.pushReplacement(context, route);
+                      Navigator.pushReplacement(context, route);
 
-                  });
+                    });
                   },
 
                 ),

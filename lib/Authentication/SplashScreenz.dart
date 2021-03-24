@@ -11,6 +11,11 @@ import 'package:flutter/material.dart';
 import 'authenication.dart';
 import 'login.dart';
 
+import 'package:e_shop/Admin/AdminStoreHome.dart';
+
+
+
+
 class SplashScreenz extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -223,7 +228,7 @@ class _SplashScreenState extends State<SplashScreenz>
 
         //   Navigator.pop(context);
 
-        Route route = MaterialPageRoute(builder: (c) => UploadPage());
+        Route route = MaterialPageRoute(builder: (c) => AdminStoreHome());
 
         Navigator.pushReplacement(context, route);
 
