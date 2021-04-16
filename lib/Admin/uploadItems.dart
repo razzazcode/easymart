@@ -556,6 +556,28 @@ adminproducts.document(EcommerceApp.sharedPreferences.getString(EcommerceApp.use
 
 });
 
+
+    final CollectionReference categories = Firestore.instance.collection("Categories");
+
+    categories.document("Electronics")
+        .collection("Mobiles").document(productId).setData({
+
+      "Seller" :      EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
+
+
+      "shortInfo" : _shortInfoTextEditingController.text.trim(),
+
+      "title" : _titleTextEditingController.text.trim(),
+      "longDescription" : _descriptioTextEditingController.text.trim(),
+      "price" : int.parse(_priceTextEditingController.text),
+      "publishedDate" : DateTime.now(),
+
+      "status" : "available",
+
+      "thumbnailUrl" : downloadUrl,
+
+    });
+
     setState(() {
 
 

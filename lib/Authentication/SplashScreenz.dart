@@ -200,7 +200,7 @@ class _SplashScreenState extends State<SplashScreenz>
     Firestore.instance.collection("users")
         .document(uid).get().then((snapshot){
 
-      //   snapshot.documents.forEach((result) {
+      //   snapshott.documents.forEach((result) {
 
       if(snapshot.data["userType"]  != "admin") {
 
