@@ -32,7 +32,10 @@ class _adminRegisterState extends State<adminRegister> {
 
   String adminuserImageUrl = "";
 
-  File _adminimageFile;
+ // File _adminimageFile;
+
+  PickedFile imageofCamera , pickedimageGallery;
+  File pickedimagewithpathAdmin ,  image2gallery;
 
 
   @override
@@ -59,16 +62,16 @@ class _adminRegisterState extends State<adminRegister> {
 
 
             InkWell(
-              onTap: selectAndPickImage,
+              onTap:  _showMyDialog , // selectAndPickImage,
               child: CircleAvatar(
 
                 radius: _screenwidth * 0.15,
 
                 backgroundColor: Colors.white,
-                backgroundImage: _adminimageFile == null ? null : FileImage(
-                    _adminimageFile),
+                backgroundImage: pickedimagewithpathAdmin == null ? null : FileImage(
+                    pickedimagewithpathAdmin),
 
-                child: _adminimageFile == null
+                child: pickedimagewithpathAdmin == null
                     ? Icon(Icons.add_photo_alternate, size: _screenwidth * 0.15,
                   color: Colors.grey,)
 
@@ -154,13 +157,85 @@ class _adminRegisterState extends State<adminRegister> {
   }
 
 
+
+  Future<void> captureAndPickImage() async {
+    //  _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    imageofCamera =  await ImagePicker().getImage(
+        source: ImageSource.camera
+    );
+
+
+    pickedimagewithpathAdmin = File(imageofCamera.path);
+
+  }
+
+
+  Future<void> galleryPickImage() async {
+    //  _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    pickedimageGallery =  await ImagePicker().getImage(
+        source: ImageSource.gallery
+    );
+
+
+    pickedimagewithpathAdmin = File( pickedimageGallery.path);
+
+  }
+
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Please select a profile picture.'),
+                Text('Would you like to select from gallery or to Capture a new photo ?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Camera'),
+              onPressed: () {
+                captureAndPickImage();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Gallery'),
+              onPressed: () {
+
+                Navigator.of(context).pop();
+
+                //  _imageFile =  ImagePicker.pickImage(source: ImageSource.gallery) as File;
+                galleryPickImage();
+                Navigator.of(context).pop();
+
+              },
+
+
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+/*
   Future<void> selectAndPickImage() async {
     _adminimageFile = await ImagePicker.pickImage(source: ImageSource.gallery, maxHeight: 600.0 , maxWidth: 970.0);
   }
 
-
+*/
   Future<void> uploadAndSaveImage() async {
-    if (_adminimageFile == null) {
+    if (pickedimagewithpathAdmin == null) {
       showDialog(
           context: context,
           builder: (c) {
@@ -217,7 +292,7 @@ class _adminRegisterState extends State<adminRegister> {
 
     StorageReference storageReference = FirebaseStorage.instance.ref().child(adminimageFileName);
 
-    StorageUploadTask storageUploadTask = storageReference.putFile(_adminimageFile);
+    StorageUploadTask storageUploadTask = storageReference.putFile(pickedimagewithpathAdmin);
 
 
     StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;
