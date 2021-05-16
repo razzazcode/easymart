@@ -34,7 +34,7 @@ class _RegisterState extends State<Register> {
 
   File _imageFile;
 
-  PickedFile image2 , pickedimage;
+  PickedFile imageofCamera , pickedimageGallery;
 File pickedimagewithpath ,  image2gallery;
 
   @override
@@ -159,12 +159,12 @@ File pickedimagewithpath ,  image2gallery;
   Future<void> captureAndPickImage() async {
   //  _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-    image2 =  await ImagePicker().getImage(
+    imageofCamera =  await ImagePicker().getImage(
       source: ImageSource.camera
     );
 
 
-    pickedimagewithpath = File(image2.path);
+    pickedimagewithpath = File(imageofCamera.path);
 
   }
 
@@ -172,12 +172,12 @@ File pickedimagewithpath ,  image2gallery;
   Future<void> galleryPickImage() async {
     //  _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-    pickedimage =  await ImagePicker().getImage(
+    pickedimageGallery =  await ImagePicker().getImage(
         source: ImageSource.gallery
     );
 
 
-    pickedimagewithpath = File( pickedimage.path);
+    pickedimagewithpath = File( pickedimageGallery.path);
 
   }
 
